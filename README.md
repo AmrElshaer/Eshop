@@ -6,3 +6,4 @@ Catalog microservice which includes :
 * REST API principles, CRUD operations
 * Sql Server database connection 
 * Swagger Open API implementation
+* integration testing for api
