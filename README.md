@@ -19,3 +19,7 @@ Discount microservice which includes:
 API Gateway Ocelot microservice which includes:
 * Implement API Gateways with Ocelot
 * Run multiple different API Gateway/BFF container types
+
+WebUI ShoppingApp Microservice
+ASP.NET Core Web Application with Bootstrap 4 and Razor template
+Call Ocelot APIs with HttpClientFactory
