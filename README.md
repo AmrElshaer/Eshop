@@ -7,3 +7,15 @@ Catalog microservice which includes :
 * Sql Server database connection 
 * Swagger Open API implementation
 * integration testing for api
+
+Discount microservice which includes:
+* ASP.NET Core Web API application
+* ASP.NET Grpc Server application
+* Build a Highly Performant inter-service gRPC Communication with Basket Microservice
+* REST API principles, CRUD operations
+* Sql Server database connection 
+* Swagger Open API implementation
+
+API Gateway Ocelot microservice which includes:
+* Implement API Gateways with Ocelot
+* Run multiple different API Gateway/BFF container types
