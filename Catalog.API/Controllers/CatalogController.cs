@@ -26,10 +26,10 @@ namespace Catalog.API.Controllers
             var products = await _context.Products.AsNoTracking().ToListAsync();
             return Ok(products);
         }
-        [HttpGet("{id:length(24)}", Name = "GetProduct")]
+        [HttpGet("{id:length(36)}", Name = "GetProduct")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Product>> GetProductById(int id)
+        public async Task<ActionResult<Product>> GetProductById(Guid id)
         {
             var product = await _context.Products.FindAsync(id);
 
