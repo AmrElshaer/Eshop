@@ -21,11 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discount.API", "Discount.AP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{5E9E3CAD-6139-492C-B4DD-EED91B37B80C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcelotApiGw", "OcelotApiGw\OcelotApiGw.csproj", "{FADBA15C-9218-4D40-AD31-6A49A538D855}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OcelotApiGw", "OcelotApiGw\OcelotApiGw.csproj", "{FADBA15C-9218-4D40-AD31-6A49A538D855}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApps", "WebApps", "{AEC55673-31C2-483B-B0C2-FAD4F340909B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMVC", "WebMVC\WebMVC.csproj", "{0CAEDC5A-D180-4CBC-A5F1-5654482B855C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMVC", "WebMVC\WebMVC.csproj", "{0CAEDC5A-D180-4CBC-A5F1-5654482B855C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
