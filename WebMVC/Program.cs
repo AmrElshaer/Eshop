@@ -4,6 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 builder.Services.AddHttpClient<ICatalogService, CatalogService>(c =>
                c.BaseAddress = new Uri(configuration["ApiSettings:GatewayAddress"]));
+builder.Services.AddHttpClient<IBasketService, BasketService>(c =>
+               c.BaseAddress = new Uri(configuration["ApiSettings:GatewayAddress"]));
 // Add services to the container.
 builder.Services.AddRazorPages();
 

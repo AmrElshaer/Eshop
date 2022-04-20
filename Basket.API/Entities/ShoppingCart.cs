@@ -14,7 +14,7 @@
             UserName = userName;
         }
 
-        public decimal TotalPrice()=>Items.Sum(x => x.Price*x.Quantity);
+        public decimal TotalPrice=>Items.Sum(x => x.Price*x.Quantity);
         
     }
 }
