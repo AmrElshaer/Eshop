@@ -16,6 +16,12 @@ Discount microservice which includes:
 * Sql Server database connection 
 * Swagger Open API implementation
 
+Basket microservice which includes:
+* ASP.NET Web API application
+* REST API principles, CRUD operations
+* Redis database connection and containerization
+* Consume Discount Grpc Service for inter-service sync communication to calculate product final price
+
 API Gateway Ocelot microservice which includes:
 * Implement API Gateways with Ocelot
 * Run multiple different API Gateway/BFF container types
