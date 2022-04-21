@@ -1,6 +1,6 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
-
+using Ocelot.Cache.CacheManager;
 new WebHostBuilder()
            .UseKestrel()
            .UseContentRoot(Directory.GetCurrentDirectory())
@@ -14,7 +14,7 @@ new WebHostBuilder()
                    .AddEnvironmentVariables();
            })
            .ConfigureServices(s => {
-               s.AddOcelot();
+               s.AddOcelot().AddCacheManager(settings => settings.WithDictionaryHandle());
            })
            .ConfigureLogging((hostingContext, logging) =>
            {
