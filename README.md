@@ -19,13 +19,15 @@ Discount microservice which includes:
 Basket microservice which includes:
 * ASP.NET Web API application
 * REST API principles, CRUD operations
-* Redis database connection and containerization
+* Redis database connection 
 * Consume Discount Grpc Service for inter-service sync communication to calculate product final price
 
 API Gateway Ocelot microservice which includes:
 * Implement API Gateways with Ocelot
-* Run multiple different API Gateway/BFF container types
+* Sample microservices to reroute through the API Gateways
+* Caching
 
 WebUI ShoppingApp Microservice
 * ASP.NET Core Web Application with Bootstrap 4 and Razor template
 * Call Ocelot APIs with HttpClientFactory
+* Implement Retry and Circuit Breaker patterns with exponential backoff with IHttpClientFactory and Polly policies
