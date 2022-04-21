@@ -23,6 +23,7 @@ new WebHostBuilder()
            .UseIISIntegration()
            .Configure(app =>
            {
+              
                app.UseOcelot().Wait();
            })
            .Build()
