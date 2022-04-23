@@ -12,6 +12,10 @@ builder.Services.AddHttpClient<IBasketService, BasketService>(c =>
                c.BaseAddress = new Uri(configuration["ApiSettings:GatewayAddress"]))
     .AddHttpMessageHandler<LoggingDelegatingHandler>().AddPolicyHandler(PolicyExtensions.GetRetryPolicy())
                 .AddPolicyHandler(PolicyExtensions.GetCircuitBreakerPolicy());
+builder.Services.AddHttpClient<IOrderService, OrderService>(c =>
+               c.BaseAddress = new Uri(configuration["ApiSettings:GatewayAddress"]))
+    .AddHttpMessageHandler<LoggingDelegatingHandler>().AddPolicyHandler(PolicyExtensions.GetRetryPolicy())
+                .AddPolicyHandler(PolicyExtensions.GetCircuitBreakerPolicy());
 // Add services to the container.
 builder.Services.AddRazorPages();
 
