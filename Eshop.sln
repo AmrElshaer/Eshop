@@ -29,6 +29,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMVC", "WebMVC\WebMVC.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basket.API", "Basket.API\Basket.API.csproj", "{9EBEB272-1406-4698-8E2C-08213F77AA61}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{672436A5-C21F-4435-8B5C-531550D7F492}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.Messages", "EventBus.Messages\EventBus.Messages.csproj", "{4E4C6E29-1B91-4D79-A9CA-BB58612D796C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,10 @@ Global
 		{9EBEB272-1406-4698-8E2C-08213F77AA61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EBEB272-1406-4698-8E2C-08213F77AA61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EBEB272-1406-4698-8E2C-08213F77AA61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E4C6E29-1B91-4D79-A9CA-BB58612D796C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E4C6E29-1B91-4D79-A9CA-BB58612D796C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E4C6E29-1B91-4D79-A9CA-BB58612D796C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E4C6E29-1B91-4D79-A9CA-BB58612D796C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +86,7 @@ Global
 		{FADBA15C-9218-4D40-AD31-6A49A538D855} = {5E9E3CAD-6139-492C-B4DD-EED91B37B80C}
 		{0CAEDC5A-D180-4CBC-A5F1-5654482B855C} = {AEC55673-31C2-483B-B0C2-FAD4F340909B}
 		{9EBEB272-1406-4698-8E2C-08213F77AA61} = {C8FE6288-53DF-4F26-A578-8A032C196734}
+		{4E4C6E29-1B91-4D79-A9CA-BB58612D796C} = {672436A5-C21F-4435-8B5C-531550D7F492}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A1E0DD84-72E9-4C22-A3D3-4564F0B416F1}
