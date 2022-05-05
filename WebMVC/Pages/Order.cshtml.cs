@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebMVC.IServices;
@@ -5,6 +6,7 @@ using WebMVC.Models;
 
 namespace WebMVC.Pages
 {
+    [Authorize]
     public class OrderModel : PageModel
     {
         private readonly IOrderService _orderService;
