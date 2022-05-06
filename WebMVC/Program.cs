@@ -8,6 +8,9 @@ using WebMVC.IServices;
 using WebMVC.Services;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+builder.Services.AddControllersWithViews();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddTransient<AuthenticationDelegatingHandler>();
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -48,7 +51,8 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddTransient<LoggingDelegatingHandler>();
 builder.Services.AddHttpClient<ICatalogService, CatalogService>(c =>
                c.BaseAddress = new Uri(configuration["ApiSettings:GatewayAddress"]))
-    .AddHttpMessageHandler<LoggingDelegatingHandler>().AddPolicyHandler(PolicyExtensions.GetRetryPolicy())
+    .AddHttpMessageHandler<LoggingDelegatingHandler>()
+    .AddPolicyHandler(PolicyExtensions.GetRetryPolicy())
                 .AddPolicyHandler(PolicyExtensions.GetCircuitBreakerPolicy());
 builder.Services.AddHttpClient<IBasketService, BasketService>(c =>
                c.BaseAddress = new Uri(configuration["ApiSettings:GatewayAddress"]))
@@ -56,7 +60,9 @@ builder.Services.AddHttpClient<IBasketService, BasketService>(c =>
                 .AddPolicyHandler(PolicyExtensions.GetCircuitBreakerPolicy());
 builder.Services.AddHttpClient<IOrderService, OrderService>(c =>
                c.BaseAddress = new Uri(configuration["ApiSettings:GatewayAddress"]))
-    .AddHttpMessageHandler<LoggingDelegatingHandler>().AddPolicyHandler(PolicyExtensions.GetRetryPolicy())
+    .AddHttpMessageHandler<AuthenticationDelegatingHandler>()
+    .AddHttpMessageHandler<LoggingDelegatingHandler>()
+    .AddPolicyHandler(PolicyExtensions.GetRetryPolicy())
                 .AddPolicyHandler(PolicyExtensions.GetCircuitBreakerPolicy());
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -76,8 +82,14 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
-
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
 app.Run();
