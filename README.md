@@ -36,7 +36,7 @@ Microservices Communication
 * Create RabbitMQ EventBus.Messages library and add references Microservices
 
 Ordering Microservice
-* Implementing DDD, CQRS, and Clean Architecture with using Best Practices
+*  CQRS, and Clean Architecture with using Best Practices
 * Developing CQRS with using MediatR, FluentValidation and AutoMapper packages
 * Consuming RabbitMQ BasketCheckout event queue with using MassTransit-RabbitMQ Configuration
 * SqlServer database connection and containerization
