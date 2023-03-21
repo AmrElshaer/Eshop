@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using WebMVC.Extensions;
 using WebMVC.IServices;
 using WebMVC.Services;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 builder.Services.AddControllersWithViews();
@@ -66,7 +68,14 @@ builder.Services.AddHttpClient<IOrderService, OrderService>(c =>
                 .AddPolicyHandler(PolicyExtensions.GetCircuitBreakerPolicy());
 // Add services to the container.
 builder.Services.AddRazorPages();
-
+builder.Services.AddOpenTelemetryTracing(config => config
+           .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("WebMVC"))
+           .AddOtlpExporter(c =>
+           {
+               c.Endpoint = new Uri("http://localhost:4317");
+           })
+           .AddSqlClientInstrumentation(opt => opt.SetDbStatementForText = true)
+           .AddAspNetCoreInstrumentation());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

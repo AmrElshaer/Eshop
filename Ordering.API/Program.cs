@@ -1,6 +1,8 @@
 using EventBus.Messages.Common;
 using MassTransit;
 using Microsoft.IdentityModel.Tokens;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Ordering.API.EventBusConsumer;
 using Ordering.Application;
 using Ordering.Infrastructure;
@@ -11,6 +13,14 @@ var Configuration = builder.Configuration;
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(Configuration);
 // MassTransit-RabbitMQ Configuration
+builder.Services.AddOpenTelemetryTracing(config => config
+           .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("Ordering api"))
+           .AddOtlpExporter(c =>
+           {
+               c.Endpoint = new Uri("http://localhost:4317");
+           })
+           .AddSqlClientInstrumentation(opt => opt.SetDbStatementForText = true)
+           .AddAspNetCoreInstrumentation());
 builder.Services.AddMassTransit(config =>
 {
     config.AddConsumer<BasketCheckoutConsumer>();

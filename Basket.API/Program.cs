@@ -3,6 +3,8 @@ using Basket.API.Repositories;
 using Discount.Grpc.Protos;
 using MassTransit;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -23,6 +25,14 @@ builder.Services.AddMassTransit(config => {
         cfg.Host(configuration["EventBusSettings:HostAddress"]);
     });
 });
+builder.Services.AddOpenTelemetryTracing(config => config
+           .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("Basket"))
+           .AddOtlpExporter(c =>
+           {
+               c.Endpoint = new Uri("http://localhost:4317");
+           })
+           .AddSqlClientInstrumentation(opt => opt.SetDbStatementForText = true)
+           .AddAspNetCoreInstrumentation());
 // grpc client configuration
 builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>
                        (o => o.Address = new Uri(configuration["GrpcSettings:DiscountUrl"]));

@@ -2,6 +2,8 @@ using IdentityServer;
 using IdentityServer.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -20,7 +22,14 @@ builder.Services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
                 .AddInMemoryIdentityResources(Config.IdentityResources)
                 .AddAspNetIdentity<IdentityServer.Models.ApplicationUser>();
-
+builder.Services.AddOpenTelemetryTracing(config => config
+           .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("Identity Server"))
+           .AddOtlpExporter(c =>
+           {
+               c.Endpoint = new Uri("http://localhost:4317");
+           })
+           .AddSqlClientInstrumentation(opt => opt.SetDbStatementForText = true)
+           .AddAspNetCoreInstrumentation());
 
 var app = builder.Build();
 app.UseHttpsRedirection();

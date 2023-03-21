@@ -1,6 +1,8 @@
 using Discount.Grpc.Data;
 using Discount.Grpc.Services;
 using Microsoft.EntityFrameworkCore;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -12,7 +14,14 @@ builder.Services.AddDbContext<DiscountDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddGrpc();
-
+builder.Services.AddOpenTelemetryTracing(config => config
+           .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("Discount Grpc"))
+           .AddOtlpExporter(c =>
+           {
+               c.Endpoint = new Uri("http://localhost:4317");
+           })
+           .AddSqlClientInstrumentation(opt => opt.SetDbStatementForText = true)
+           .AddAspNetCoreInstrumentation());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
